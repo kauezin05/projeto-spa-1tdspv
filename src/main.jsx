@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './components/Home.jsx';
-import Produtos from './components/produtos/Produtos.jsx';
-import Error from './components/Error.jsx';
-import EditarProdutos from './components/produtos/EditarProduto.jsx';
+import Home from './Router/Home.jsx';
+import Produtos from './Router/produtos/Produtos.jsx';
+import Error from './Router/Error.jsx';
+import EditarProdutos from './Router/produtos/EditarProduto.jsx';
 
 const router = createBrowserRouter([
   {path: "/" , element: <App/>, errorElement: <Error/>,
