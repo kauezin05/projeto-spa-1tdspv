@@ -8,6 +8,7 @@ import Home from './Router/Home.jsx';
 import Produtos from './Router/produtos/Produtos.jsx';
 import Error from './Router/Error.jsx';
 import EditarProdutos from './Router/produtos/EditarProduto.jsx';
+import ExcluirProdutos from './Router/produtos/ExcluirProdutos.jsx';
 
 const router = createBrowserRouter([
   {path: "/" , element: <App/>, errorElement: <Error/>,
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       {path: "/" , element: <Home/>},
       {path: "/produtos" , element: <Produtos/>},
       {path: "/editar/produtos/:id" , element: <EditarProdutos/>},
+      {path: "/excluir/produtos/:id" , element: <ExcluirProdutos/>},
     ]}
 ])
 
@@ -23,4 +25,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router}/>
   </React.StrictMode>,
 )
-
