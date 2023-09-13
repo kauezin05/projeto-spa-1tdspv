@@ -7,6 +7,10 @@ export default function Produtos() {
 
   document.title = "Lista de Produtos";
 
+  useEffect(()=>{
+    console.log("Use-Effect que será sempre renderizado!")
+  });
+
   return (
     <div>
         <h1>LISTA DE PRODUTOS</h1>
