@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ListaProdutos } from "./ListaProdutos";
 import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
 import classes from "./Produtos.module.css"; 
+import { useState } from "react";
 
 export default function Produtos() {
 
@@ -11,9 +12,15 @@ export default function Produtos() {
     console.log("Use-Effect que será sempre renderizado!")
   });
 
+  const [exemplo, setExemplo] = useState(0);
+
   return (
     <div>
         <h1>LISTA DE PRODUTOS</h1>
+        
+      <div>
+        <button onClick={() => setExemplo(exemplo + 1)}>CLICK - {exemplo}</button>
+      </div>
 
       <div>
         <table className={classes.tableStyle}>
