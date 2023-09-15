@@ -8,11 +8,26 @@ export default function Produtos() {
 
   document.title = "Lista de Produtos";
 
+  
+  const [exemplo, setExemplo] = useState([{}]);
+  
+  const [count, setExemploCount] = useState(0);
+
   useEffect(()=>{
     console.log("Use-Effect que será sempre renderizado!")
   });
+  
+  useEffect(()=>{
+    console.log("Use-Effect que rendizera apenas 1 vez!")
 
-  const [exemplo, setExemplo] = useState(0);
+    setExemplo(ListaProdutos);
+
+  },[]);
+
+  useEffect(()=>{
+    console.log("Use-Effect que será rendizado o objeto ou componente ou elemento que esta no array de dependencias sofrer atualização")
+  },[count]);
+
 
   return (
     <div>
@@ -20,6 +35,9 @@ export default function Produtos() {
         
       <div>
         <button onClick={() => setExemplo(exemplo + 1)}>CLICK - {exemplo}</button>
+      </div>
+      <div>
+        <button onClick={() => setExemploCount(count + 1)}>COUNTER - {count}</button>
       </div>
 
       <div>
@@ -34,7 +52,7 @@ export default function Produtos() {
               </tr>
           </thead>
           <tbody>
-            {ListaProdutos.map((produto, index) => (
+            {exemplo.map((produto, index) => (
               <tr key={index} className={classes.tableLineStyle}>
                 <td className={classes.tableDataStyle}>{produto.id}</td>
                 <td className={classes.tableDataStyle}>{produto.nome}</td>
