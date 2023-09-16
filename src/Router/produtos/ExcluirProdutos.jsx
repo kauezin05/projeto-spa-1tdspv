@@ -1,7 +1,6 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { ListaProdutos } from './ListaProdutos';
-import style from './ExcluirProdutos.module.css';
+import { useNavigate, useParams } from "react-router-dom"
+import { ListaProdutos } from "./ListaProdutos";
+import style from './ExcluirProduto.module.css';
 
 export default function ExcluirProdutos() {
 

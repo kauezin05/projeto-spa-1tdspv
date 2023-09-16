@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { ListaProdutos } from "./ListaProdutos";
+import { Link } from "react-router-dom";
 import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
-import classes from "./Produtos.module.css"; 
-import { useState } from "react";
+import classes from "./Produtos.module.css";
+import { useEffect, useState } from "react";
 
 export default function Produtos() {
 
