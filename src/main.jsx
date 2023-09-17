@@ -9,14 +9,17 @@ import Produtos from './Router/produtos/Produtos.jsx';
 import Error from './Router/Error.jsx';
 import EditarProdutos from './Router/produtos/EditarProduto.jsx';
 import ExcluirProdutos from './Router/produtos/ExcluirProdutos.jsx';
+import InserirProdutos from './Router/produtos/InserirProdutos.jsx';
 
 const router = createBrowserRouter([
   {path: "/" , element: <App/>, errorElement: <Error/>,
     children:[
       {path: "/" , element: <Home/>},
       {path: "/produtos" , element: <Produtos/>},
+      {path: "/inserir/produtos" , element: <InserirProdutos/>},
       {path: "/editar/produtos/:id" , element: <EditarProdutos/>},
       {path: "/excluir/produtos/:id" , element: <ExcluirProdutos/>},
+      
     ]}
 ])
 
