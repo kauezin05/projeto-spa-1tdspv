@@ -1,10 +1,30 @@
 import { ListaProdutos } from "./ListaProdutos";
 import { Link } from "react-router-dom";
-import { AiFillEdit as Editar, AiOutlineDelete as Excluir } from "react-icons/ai";
+import {
+  AiFillEdit as Editar,
+  AiOutlineDelete as Excluir,
+} from "react-icons/ai";
 import classes from "./Produtos.module.css";
+import { useEffect, useState } from "react";
 
 export default function Produtos() {
   document.title = "Lista de Produtos";
+  const [listaProdutoLocal, setListaProdutoLocal] = useState([{}]);
+
+  const getStaticData = () => {
+    const response = fetch("http://localhost:5000", {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => response.json())
+    .then((data) => {
+      setListaProdutoLocal(data)
+    })
+    .catch((err) => console.log(err))
+  };
+
+  useEffect(() => getStaticData());
 
   return (
     <div>
@@ -22,7 +42,7 @@ export default function Produtos() {
             </tr>
           </thead>
           <tbody>
-            {exemplo.map((produto, index) => (
+            {listaProdutoLocal.map((produto, index) => (
               <tr key={index} className={classes.tableLineStyle}>
                 <td className={classes.tableDataStyle}>{produto.id}</td>
                 <td className={classes.tableDataStyle}>{produto.nome}</td>
