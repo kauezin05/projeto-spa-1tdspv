@@ -1,69 +1,112 @@
-import { ListaProdutos } from "./ListaProdutos";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import classes from "./InserirProdutos.module.css";
 
-export default function InserirProdutos() {
+export default function InserirProduto() {
+  document.title = "CADASTRAR";
 
   const navigate = useNavigate();
 
-  
-  document.title = "INSERIR PRODUTOS"
-  
-  const handleSubmitAdd = (event) =>{
-     event.preventDefault();
+  const [listaLocalProdutos, setListaLocalProdutos] = useState([{}]);
+  let novoId;
+  useEffect(() => {
+    fetch("http://localhost:5000/produtos", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setListaLocalProdutos(data);
+      })
+      .catch((error) => console.log(error));
 
-         //Destructuring
-    const {nome, desc, preco} = event.target;
+    novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
+  }, []);
 
-    //useState()
-    const produtoNovo = {
-      id: ListaProdutos.length + 1,
-      nome: nome.value,
-      desc: desc.value,
-      preco: preco.value,
-      img: "https://picsum.photos/100/100",
-      
-    }
+  const [produto, setProduto] = useState({
+    id: novoId,
+    nome: "",
+    desc: "",
+    preco: "",
+    img: "",
+  });
 
-     ListaProdutos.push(produtoNovo);
+  const handleChange = (event) => {
+    //Destructuring
+    const { name, value } = event.target;
+    setProduto({ ...produto, [name]: value });
+  };
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+
+    fetch("http://localhost:5000/produtos",{
+        method: "POST",
+        body: JSON.stringify(produto),
+        headers:{
+            "Content-Type":"application/json",
+        }
+    })
+    .then((response)=> response.json())
+    .then((data)=>(console.log(data)))
+    .catch(error => console.log(error));
+
      navigate("/produtos");
   }
-  
-  
+
   return (
+    <div>
       <div>
-        <h1>EditarProdutos</h1>
-        <div>
-          <form onSubmit={handleSubmitAdd}>
-            <fieldset>
-              <legend>Novo produto</legend>
-              <input type="hidden" name="id"/>
-              <div>
-                <label htmlFor="idProd">Nome do Produto</label>
-                <input type="text" name="nome" id="idProd"/>
-              </div>
-              <div>
-                <label htmlFor="idDesc">Descrição</label>
-                <input type="text" name="desc" id="idDesc" />
-              </div>
-              <div>
-                <label htmlFor="idPreco">Preço</label>
-                <input
-                  type="text"
-                  name="preco"
-                  id="idPreco"            
-                />
-              </div>
-              <div>
-                <button>INSERIR</button>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-  
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+            <legend>Cadastrar Produto</legend>
+            <div>
+              <label htmlFor="idProd">Nome do Produto</label>
+              <input
+                type="text"
+                name="nome"
+                id="idProd"
+                onChange={handleChange}
+                value={produto.nome}
+              />
+            </div>
+            <div>
+              <label htmlFor="idDesc">Descrição</label>
+              <input
+                type="text"
+                name="desc"
+                id="idDesc"
+                onChange={handleChange}
+                value={produto.desc}
+              />
+            </div>
+            <div>
+              <label htmlFor="idPreco">Preço</label>
+              <input
+                type="text"
+                name="preco"
+                id="idPreco"
+                onChange={handleChange}
+                value={produto.preco}
+              />
+            </div>
+            <div>
+              <label htmlFor="idImg">Imagem</label>
+              <input
+                type="url"
+                name="img"
+                id="idImg"
+                onChange={handleChange}
+                value={produto.img}
+              />
+            </div>
+            <div>
+              <button>CADASTRAR</button>
+            </div>
+          </fieldset>
+        </form>
       </div>
+    </div>
   );
-
-
-
 }
