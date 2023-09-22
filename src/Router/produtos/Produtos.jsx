@@ -8,27 +8,32 @@ import classes from "./Produtos.module.css";
 import { useEffect, useState } from "react";
 
 export default function Produtos() {
+
   document.title = "Lista de Produtos";
-  const [listaProdutoLocal, setListaProdutoLocal] = useState([{}]);
 
-  const getStaticData = () => {
-    const response = fetch("http://localhost:5000", {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json())
-    .then((data) => {
-      setListaProdutoLocal(data)
-    })
-    .catch((err) => console.log(err))
-  };
+  const [listaProdutoLocal, setListaProdutoLocal] = useState([{}])
 
-  useEffect(() => getStaticData());
+  useEffect(()=>{
+
+      fetch('http://localhost:5000/produtos',{
+
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+      }).then((response)=> response.json())
+      .then((data)=>{
+          setListaProdutoLocal(data);
+      })
+      .catch((err)=>console.log(err));
+    
+  },[]);
 
   return (
     <div>
-      <h1>LISTA DE PRODUTOS</h1>
+        <h1>LISTA DE PRODUTOS</h1>
+
+
       <div>
         <table className={classes.tableStyle}>
           <thead>
@@ -39,7 +44,7 @@ export default function Produtos() {
               <th className={classes.tableHeaderStyle}>Preço</th>
               <th className={classes.tableHeaderStyle}>Imagem</th>
               <th className={classes.tableHeaderStyle}>Editar/Excluir</th>
-            </tr>
+              </tr>
           </thead>
           <tbody>
             {listaProdutoLocal.map((produto, index) => (
@@ -48,30 +53,36 @@ export default function Produtos() {
                 <td className={classes.tableDataStyle}>{produto.nome}</td>
                 <td className={classes.tableDataStyle}>{produto.desc}</td>
                 <td className={classes.tableDataStyle}>{produto.preco}</td>
-                <td className={classes.tableDataStyle}>
-                  <img src={produto.img} alt={produto.desc} />
-                </td>
-                <td className={classes.tableDataStyle}>
-                  <Link to={`/editar/produtos/${produto.id}`}>
-                    <Editar />
-                  </Link>{" "}
-                  |{" "}
-                  <Link to={`/excluir/produtos/${produto.id}`}>
-                    <Excluir />
-                  </Link>
-                </td>
+                <td className={classes.tableDataStyle}><img src={produto.img} alt={produto.desc} /></td>
+                <td className={classes.tableDataStyle}><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
               </tr>
-            ))}
+            ))} 
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan="5" className={classes.tableDataStyle}>
-                Total de Produtos: {ListaProdutos.length}
-              </td>
+              <td colSpan="5" className={classes.tableDataStyle}>Total de Produtos: {ListaProdutos.length}</td>
             </tr>
           </tfoot>
         </table>
       </div>
+
     </div>
-  );
+  )
 }
+
+
+//   <div>
+//   <button onClick={()=> setCount(count + 1)}>COUNTER - {count}</button>
+// </div>
+
+
+// const [exemplo, setExemplo] = useState([{}]);
+// const [count, setCount] = useState(0);
+
+// useEffect(()=>{
+//   console.log("Use-Effect que será sempre renderizado!");
+// });
+
+// useEffect(()=>{
+//   console.log("Use-Effect que será renderizado o objeto ou componente ou elemento que está no array de depenências sofrer atualização.");
+// },[count]);
