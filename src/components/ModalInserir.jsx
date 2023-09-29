@@ -1,62 +1,66 @@
-import styles from "./ModalInserir.module.css";
 import { useEffect, useState } from "react";
+import styles from "./ModalInserir.module.css";
 
 export default function ModalInserir(props) {
-  if (props.open) {
-
+  
     document.title = "CADASTRAR";
 
-  const [listaLocalProdutos, setListaLocalProdutos] = useState([{}]);
-  let novoId;
-  useEffect(() => {
-    fetch("http://localhost:5000/produtos", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setListaLocalProdutos(data);
+    const [listaLocalProdutos, setListaLocalProdutos] = useState([{}]);
+    let novoId;
+    useEffect(() => {
+      fetch("http://localhost:5000/produtos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then((data) => {
+          setListaLocalProdutos(data);
+        })
+        .catch((error) => console.log(error));
+  
+    }, []);
+  
+    novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
+  
+    const [produto, setProduto] = useState({
+      id: novoId,
+      nome: "",
+      desc: "",
+      preco: "",
+      img: "",
+    });
+  
+    const handleChange = (event) => {
+      //Destructuring
+      const { name, value } = event.target;
+      setProduto({ ...produto, [name]: value });
+    };
+  
+    const handleSubmit = (e)=>{
+      e.preventDefault();
+  
+      fetch("http://localhost:5000/produtos",{
+          method: "POST",
+          body: JSON.stringify(produto),
+          headers:{
+              "Content-Type":"application/json",
+          }
+      })
+      .then((response)=> response.json())
+      .then((data)=>(console.log(data)))
+      .catch(error => console.log(error));
+  
+      props.setOpen(false);
+      
+    }
+  
+    if (props.open) {
 
-  }, []);
+    
 
-  novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
-
-  const [produto, setProduto] = useState({
-    id: novoId,
-    nome: "",
-    desc: "",
-    preco: "",
-    img: "",
-  });
-
-  const handleChange = (event) => {
-    //Destructuring
-    const { name, value } = event.target;
-    setProduto({ ...produto, [name]: value });
-  };
-
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-
-    fetch("http://localhost:5000/produtos",{
-        method: "POST",
-        body: JSON.stringify(produto),
-        headers:{
-            "Content-Type":"application/json",
-        }
-    })
-    .then((response)=> response.json())
-    .then((data)=>(console.log(data)))
-    .catch(error => console.log(error));
-
-    props.setOpen(false);
-
-  }
-
+    return (
         <div className={styles.container}>
           <div>
             <form onSubmit={handleSubmit}>
