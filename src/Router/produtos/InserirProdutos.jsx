@@ -21,8 +21,9 @@ export default function InserirProduto() {
       })
       .catch((error) => console.log(error));
 
-      novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
   }, []);
+
+  novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
 
   const [produto, setProduto] = useState({
     id: novoId,
