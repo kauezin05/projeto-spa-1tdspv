@@ -6,6 +6,8 @@ import {
 } from "react-icons/ai";
 import classes from "./Produtos.module.css";
 import { useEffect, useState } from "react";
+import ModalInserir from "../components/ModalInserir";
+
 
 export default function Produtos() {
 
@@ -26,13 +28,18 @@ export default function Produtos() {
           setListaProdutoLocal(data);
       })
       .catch((err)=>console.log(err));
+
+      const [open, setOpen] = useState(false);
     
   },[]);
 
   return (
     <div>
         <h1>LISTA DE PRODUTOS</h1>
+      
+        {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""}
 
+        <button onClick={()=> setOpen(true)}>OPEN-MODAL</button>
 
       <div>
         <table className={classes.tableStyle}>
