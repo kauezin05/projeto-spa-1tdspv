@@ -1,0 +1,27 @@
+$text-color:#fff;
+$back-color:#000;
+$familiaDaFonte:Arial, Helvetica, sans-serif;
+$tamanhoFont:1.5rem;
+$estiloBordas:solid 2px #ccc;
+
+
+.tableStyle{
+    border-collapse: collapse;
+    border: $estiloBordas;
+    background-color: $back-color;
+    color: $text-color;
+    margin: 0 auto;
+    thead{
+        background-color: gray;
+        th{
+            border: $estiloBordas;
+        }
+    }
+
+    tbody{
+        td{
+            border: $estiloBordas;
+    
+        }
+    }
+}
