@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
 import classes from "./Produtos.module.css";
 import { useEffect, useState } from "react";
-import ModalInserir from "../components/ModalInserir";
+import ModalInserir from "../../components/ModalInserir";
 
 export default function Produtos() {
 
