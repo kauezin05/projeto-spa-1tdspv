@@ -1,9 +1,9 @@
-$text-color:#fff;
-$back-color:#000;
-$familiaDaFonte:Arial, Helvetica, sans-serif;
-$tamanhoFont:1.5rem;
-$estiloBordas:solid 2px #ccc;
 
+$text-color:#fff;
+$back-color:#000000;
+$familiaDaFonte:Arial, Helvetica, sans-serif;
+$tamanhoFonte:1.5rem;
+$estiloBordas:solid 2px #ccc;
 
 .tableStyle{
     border-collapse: collapse;
@@ -11,17 +11,18 @@ $estiloBordas:solid 2px #ccc;
     background-color: $back-color;
     color: $text-color;
     margin: 0 auto;
+
     thead{
-        background-color: gray;
+        background-color: blueviolet;
         th{
             border: $estiloBordas;
         }
-    }
+    }   
 
     tbody{
         td{
             border: $estiloBordas;
-    
         }
     }
+
 }

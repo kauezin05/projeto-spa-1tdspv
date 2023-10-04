@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ModalInserir from "../../components/ModalInserir";
 import "./Produtos.scss";
 
+
 export default function Produtos() {
 
   document.title = "Lista de Produtos";
