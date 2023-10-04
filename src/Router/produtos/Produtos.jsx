@@ -10,10 +10,11 @@ export default function Produtos() {
   document.title = "Lista de Produtos";
 
   const [listaProdutoLocal, setListaProdutoLocal] = useState([{}])
+  const [parametroEditar, setParametroEditar] = useState()
+  const [editModal, setEditModal] = useState(false)
 
-  useEffect(()=>{
-
-      fetch('http://localhost:5000/produtos',{
+  const fetchData = async () => {
+    fetch('http://localhost:5000/produtos',{
 
         method: 'GET',
         headers:{
@@ -24,14 +25,17 @@ export default function Produtos() {
           setListaProdutoLocal(data);
       })
       .catch((err)=>console.log(err));
-    
-  },[]);
+  };
 
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    fetchData();
+  },[editModal, open])
+
   return (
     <div>
-      <ModalEditar open={open} setOpen={setOpen}/>
+      <ModalEditar open={editModal} setOpen={setEditModal} id={parametroEditar}/>
         <h1>LISTA DE PRODUTOS</h1>
       
       {/* {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""} */}
@@ -58,7 +62,14 @@ export default function Produtos() {
                 <td>{produto.desc}</td>
                 <td>{produto.preco}</td>
                 <td><img src={produto.img} alt={produto.desc} width={100}/></td>
-                <td><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
+                <td><button onClick={ () => {
+                    setParametroEditar(produto.id);
+                    setEditModal(true);
+                }} ><Editar/></button> 
+                
+                |
+
+                <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
               </tr>
             ))} 
           </tbody>

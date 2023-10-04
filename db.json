@@ -1,24 +1,24 @@
 {
   "produtos": [
     {
-      "id": 1,
-      "nome": "Teclado",
       "desc": "Teclado 102 Teclas - Mecânico.",
-      "preco": 200,
-      "img": "https://picsum.photos/100/100"
+      "id": 1,
+      "img": "https://picsum.photos/100/100",
+      "nome": "Teclado",
+      "preco": "200489"
     },
     {
       "id": 2,
-      "nome": "Mouse",
+      "nome": "Mouse34",
       "desc": "Mouse Gamer - 3200 DPI.",
-      "preco": 100,
+      "preco": "1003333333",
       "img": "https://picsum.photos/100/100"
     },
     {
       "id": 3,
       "nome": "Monitor",
       "desc": "Monitor 24' - 144Hz.",
-      "preco": 800,
+      "preco": "44444444444444444",
       "img": "https://picsum.photos/100/100"
     },
     {
