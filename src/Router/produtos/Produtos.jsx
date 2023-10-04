@@ -3,10 +3,10 @@ import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ModalInserir from "../../components/ModalInserir";
 import "./Produtos.scss";
+import ModalEditar from "../../components/ModalEditar";
 
 
 export default function Produtos() {
-
   document.title = "Lista de Produtos";
 
   const [listaProdutoLocal, setListaProdutoLocal] = useState([{}])
@@ -31,9 +31,10 @@ export default function Produtos() {
 
   return (
     <div>
+      <ModalEditar open={open} setOpen={setOpen}/>
         <h1>LISTA DE PRODUTOS</h1>
       
-      {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""}
+      {/* {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""} */}
 
     <Link onClick={()=> setOpen(true)}>Cadastrar Produtos</Link>
 
