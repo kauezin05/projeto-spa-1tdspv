@@ -46,7 +46,19 @@ export default function ModalEditar({ open, setOpen }) {
                                     value={produto.preco}
                                 />
                             </div>
-                            
+                            <div>
+                                <label htmlFor="idImg">Imagem</label>
+                                <input
+                                    type="url"
+                                    name="img"
+                                    id="idImg"
+                                    onChange={handleChange}
+                                    value={produto.img}
+                                />
+                            </div>
+                            <div>
+                                <button>CADASTRAR</button>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
