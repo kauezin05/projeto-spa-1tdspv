@@ -36,6 +36,16 @@ export default function ModalEditar({ open, setOpen }) {
                                     value={produto.desc}
                                 />
                             </div>
+                            <div>
+                                <label htmlFor="idPreco">Preço</label>
+                                <input
+                                    type="text"
+                                    name="preco"
+                                    id="idPreco"
+                                    onChange={handleChange}
+                                    value={produto.preco}
+                                />
+                            </div>
                             
                         </fieldset>
                     </form>
