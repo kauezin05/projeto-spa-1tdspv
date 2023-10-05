@@ -1,12 +1,13 @@
+import "./Home.scss"
 
 export default function Home() {
 
     document.title = "Home";
   
     return (
-      <div>
+      <section className="containerHome">
           <h1>COMPONENTE - HOME</h1>
-          <img src="/produtos.jpg" alt="Produtos" />
-      </div>
+          <img className="imagemProdutos" src="/produtos.jpg" alt="Produtos" />
+      </section>
     )
   }
