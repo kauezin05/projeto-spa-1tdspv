@@ -57,15 +57,15 @@ export default function ModalEditar({ open, setOpen, id }) {
             {open && (
                 <div className={styles.container}>
                     <form onSubmit={handleSubmit} className='formulario'>
-                        <fieldset className='fieldset'>
-                            <div className="header">
+                        <fieldset className='containerFormulario'>
+                            <div className="cabecalhoFormulario">
                                 <h3 className="titulo">Editar Produto</h3>
                                 <button className="closeButton" onClick={() => setOpen(false)}>X</button>
                             </div>
                             
                             <div className="inputContainer">
-                                <label className="label" htmlFor="idProd">Nome do Produto</label>
-                                <input className="input"
+                                <label className="etiquetas" htmlFor="idProd">Nome do Produto</label>
+                                <input className="campoFormulario"
                                     type="text"
                                     name="nome"
                                     id="idProd"
@@ -74,8 +74,8 @@ export default function ModalEditar({ open, setOpen, id }) {
                                 />
                             </div>
                             <div className="inputContainer">
-                                <label className="label" htmlFor="idDesc">Descrição</label>
-                                <input className="input"
+                                <label className="etiquetas" htmlFor="idDesc">Descrição</label>
+                                <input className="campoFormulario"
                                     type="text"
                                     name="desc"
                                     id="idDesc"
@@ -84,8 +84,8 @@ export default function ModalEditar({ open, setOpen, id }) {
                                 />
                             </div >
                             <div className="inputContainer">
-                                <label className="label" htmlFor="idPreco">Preço</label>
-                                <input className="input"
+                                <label className="etiquetas" htmlFor="idPreco">Preço</label>
+                                <input className="campoFormulario"
                                     type="text"
                                     name="preco"
                                     id="idPreco"
@@ -94,8 +94,8 @@ export default function ModalEditar({ open, setOpen, id }) {
                                 />
                             </div>
                             <div className="inputContainer">
-                                <label className="label" htmlFor="idImg">Imagem</label>
-                                <input className="input"
+                                <label className="etiquetas" htmlFor="idImg">Imagem</label>
+                                <input className="campoFormulario"
                                     type="url"
                                     name="img"
                                     id="idImg"
