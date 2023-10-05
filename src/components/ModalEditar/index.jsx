@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import "./ModalEditar.scss";
 import styles from './ModalEditar.scss';
 import { useState, useEffect } from 'react';
 
@@ -13,17 +13,17 @@ export default function ModalEditar({ open, setOpen, id }) {
 
     const fetchData = async () => {
         fetch("http://localhost:5000/produtos", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-          .then((response) => response.json())
-          .then((data) => {
-            const produtoFiltro = data.find(item => item.id === Number(id));
-            setProdutoEditar(produtoFiltro && produtoFiltro);
-          })
-          .catch((error) => console.log(error));
+            .then((response) => response.json())
+            .then((data) => {
+                const produtoFiltro = data.find(item => item.id === Number(id));
+                setProdutoEditar(produtoFiltro && produtoFiltro);
+            })
+            .catch((error) => console.log(error));
     };
 
     const handleChange = (event) => {
@@ -34,20 +34,20 @@ export default function ModalEditar({ open, setOpen, id }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         fetch(`http://localhost:5000/produtos/${id}`, {
-          method: "PUT",
-          body: JSON.stringify(produtoEditar),
-          headers: {
-            "Content-Type": "application/json",
-          },
+            method: "PUT",
+            body: JSON.stringify(produtoEditar),
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => console.log(error));
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
         setOpen(false);
-      };
-           
+    };
+
     useEffect(() => {
         open && fetchData();
     }, [open]);
@@ -58,11 +58,14 @@ export default function ModalEditar({ open, setOpen, id }) {
                 <div className={styles.container}>
                     <form onSubmit={handleSubmit} className='formulario'>
                         <fieldset className='fieldset'>
-                            <button onClick={() => setOpen(false)}>X</button>
-                            <legend>Editar Produto</legend>
-                            <div>
-                                <label htmlFor="idProd">Nome do Produto</label>
-                                <input
+                            <div className="header">
+                                <h3 className="titulo">Editar Produto</h3>
+                                <button className="closeButton" onClick={() => setOpen(false)}>X</button>
+                            </div>
+                            
+                            <div className="inputContainer">
+                                <label className="label" htmlFor="idProd">Nome do Produto</label>
+                                <input className="input"
                                     type="text"
                                     name="nome"
                                     id="idProd"
@@ -70,19 +73,19 @@ export default function ModalEditar({ open, setOpen, id }) {
                                     value={produtoEditar?.nome}
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="idDesc">Descrição</label>
-                                <input
+                            <div className="inputContainer">
+                                <label className="label" htmlFor="idDesc">Descrição</label>
+                                <input className="input"
                                     type="text"
                                     name="desc"
                                     id="idDesc"
                                     onChange={handleChange}
                                     value={produtoEditar?.desc}
                                 />
-                            </div>
-                            <div>
-                                <label htmlFor="idPreco">Preço</label>
-                                <input
+                            </div >
+                            <div className="inputContainer">
+                                <label className="label" htmlFor="idPreco">Preço</label>
+                                <input className="input"
                                     type="text"
                                     name="preco"
                                     id="idPreco"
@@ -90,9 +93,9 @@ export default function ModalEditar({ open, setOpen, id }) {
                                     value={produtoEditar?.preco}
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="idImg">Imagem</label>
-                                <input
+                            <div className="inputContainer">
+                                <label className="label" htmlFor="idImg">Imagem</label>
+                                <input className="input"
                                     type="url"
                                     name="img"
                                     id="idImg"
@@ -100,9 +103,9 @@ export default function ModalEditar({ open, setOpen, id }) {
                                     value={produtoEditar?.img}
                                 />
                             </div>
-                            <div>
-                                <button>EDITAR</button>
-                            </div>
+
+                            <button className="editButton">EDITAR</button>
+
                         </fieldset>
                     </form>
                 </div>
