@@ -38,7 +38,7 @@ export default function Produtos() {
       <ModalEditar open={editModal} setOpen={setEditModal} id={parametroEditar}/>
         <h1>LISTA DE PRODUTOS</h1>
       
-      {/* {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""} */}
+      {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""}
 
     <Link onClick={()=> setOpen(true)}>Cadastrar Produtos</Link>
 

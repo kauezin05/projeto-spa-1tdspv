@@ -1,15 +1,15 @@
 {
   "produtos": [
     {
-      "desc": "Teclado 102 Teclas - Mecânico.",
+      "desc": "Professor melhor",
       "id": 1,
       "img": "https://picsum.photos/100/100",
-      "nome": "Teclado",
-      "preco": "200489"
+      "nome": "Alexandre",
+      "preco": "1000000000000"
     },
     {
       "id": 2,
-      "nome": "Mouse34",
+      "nome": "Mouse344",
       "desc": "Mouse Gamer - 3200 DPI.",
       "preco": "1003333333",
       "img": "https://picsum.photos/100/100"
@@ -86,10 +86,17 @@
     },
     {
       "id": 13,
-      "nome": "Televisão",
-      "desc": "14\"",
-      "preco": "500",
+      "nome": "PS3",
+      "desc": "dfdfd",
+      "preco": "1",
       "img": "https://i.zst.com.br/thumbs/12/16/15/1005927.jpg"
+    },
+    {
+      "id": 14,
+      "nome": "Kauê Alexandre de Oliveira",
+      "desc": "4242",
+      "preco": "sdsd",
+      "img": "https://picsum.photos/100/100"
     }
   ]
 }

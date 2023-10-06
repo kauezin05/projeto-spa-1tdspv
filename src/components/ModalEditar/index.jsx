@@ -15,7 +15,7 @@ export default function ModalEditar({ open, setOpen, id }) {
         fetch("http://localhost:5000/produtos", {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
+                "Accept": "application/json",
             },
         })
             .then((response) => response.json())
@@ -104,7 +104,7 @@ export default function ModalEditar({ open, setOpen, id }) {
                                 />
                             </div>
 
-                            <button className="editButton">EDITAR</button>
+                            <button type="submit" className="editButton">EDITAR</button>
 
                         </fieldset>
                     </form>
